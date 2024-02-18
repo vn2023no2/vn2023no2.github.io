@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:1.25.3
+    volumes:
+    - ./build:/usr/share/nginx/html
+    ports:
+    - "8080:80"
