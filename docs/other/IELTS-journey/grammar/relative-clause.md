@@ -94,7 +94,7 @@ Ví dụ:
 ### Mệnh đề quan hệ không xác định
 Đây là mệnh đề bổ sung thêm `thông tin cho chủ ngữ`, đây là mệnh đề `có thể bỏ đi` mà `câu vẫn có nghĩa`. Mệnh đề quan hệ không xác định có dấu hiệu nhận biết là `dấu phẩy “,”`.
 
-Danh từ đứng trước thường là tên riêng hoặc trước các danh từ thường có các từ như: `this, that, these, those, my, his, her, ...` đứng trước.
+Danh từ đứng trước thường là tên riêng (đã được xác định rồi) hoặc trước các danh từ thường có các từ như: `this, that, these, those, my, his, her, ...` đứng trước.
 
 ```Lưu ý: Trong mệnh đề không xác định KHÔNG ĐƯỢC dùng đại từ quan hệ “that”.```
 
@@ -105,6 +105,54 @@ Ví dụ:
 
 
 ## 3. Cách rút gọn mệnh đề quan hệ
+
+### Dạng chủ động: V-ing
+
+Nếu mệnh đề quan hệ là mệnh đề chủ động thì rút thành cụm hiện tại phân từ (V-ing).
+
+Ví dụ: 
+
+- The man who stands at the door is my uncle. => The man standing at the door is my uncle.
+
+- The woman who teaches English at his school is Ms.Smith => The woman teaching English at his school is Ms. Smith 
+
+
+
+### Dạng bị động: V-ed/ V3
+
+Ta có thể dùng past participle (V3) để thay thế cho mệnh đề đề quan hệ  khi nó mang nghĩa bị động.
+
+Ví dụ:
+
+- The woman who is / was injured was my neighbor => The woman injured was my neighbor. ( Người phụ nữ bị thương là hàng xóm của tôi) 
+
+- The instructions that are given on the front page are very important. => The instructions given on the front page are very important. ( Hướng dẫn được đưa ở trang đầu rất quan trọng)
+
+
+
+### Dạng to + V
+
+Mệnh đề quan hệ được rút thành cụm động từ nguyên mẫu (To-infinitive) khi trước đại từ quan hệ có các cụm từ: the first, the second, the last, the only hoặc hình thức so sánh bậc nhất.
+
+Ví dụ:
+
+Chủ động:
+- The first student who comes to class has to clean the board.
+
+- The first student to come to class has to clean the board. ( Học sinh đầu tiên đến lớp phải lau bảng) 
+
+Bị động:
+- The only room which was painted yesterday was Mary’s.
+
+The only room to be painted yesterday was Mary’s. ( Căn phòng duy nhất ngày hôm qua được vẽ là Mary)
+
+### Rút gọn bằng cụm danh từ 
+Khi mệnh đề quan hệ có dạng: S + be + danh từ/cụm danh từ/cụm giới từ. Bạn cần lược bỏ đại từ quan hệ và động từ to-be, chỉ giữ lại cụm danh từ. 
+
+Ví dụ: 
+
+We visited Finger island, which is the most-visited place in Phu Quoc. → We visited Finger island, the most-visited place in Phu Quoc
+
 
 
 `Reference:`   
