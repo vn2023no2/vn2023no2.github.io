@@ -131,6 +131,21 @@ Ex:
 • A number of clothes are given for the poor. (Một số quần áo được gửi cho người nghèo.)
 
 ### Chủ ngữ chỉ một tập thể thì tuỳ vào ngữ cảnh
+• Một số danh từ chỉ tập thể: family, staff, team, group, congress, crowd, committee, ...
+```
+Hành động của từng thành viên thì chia động từ ở số nhiều.
+```
+Ex:   
+- The family are having breakfast.     
+- The crowd are becoming excited.     
+- The staff were upset not to have been informed.     
+```
+Tính chất của tập thể đó như một đơn vị thì chia động từ ở số ít.
+```
+Ex:    
+- My family is very conservative.      
+- The congress has laws to protect wildlife from commercial trade and overhunting.      
+- His team gets the best assignments case study.       
 
 ### Một số danh từ có “S” ở cuối nhưng sẽ chia động từ theo hình thức số ít.
 • Môn học: physics (vật lý), mathematics (toán), economics (kinh tế học), politics (chính trị học)…
