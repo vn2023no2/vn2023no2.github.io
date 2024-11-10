@@ -44,3 +44,24 @@ astonish (v): làm kinh ngạc
 
 amuse (v): làm cho thích thú
 
+admire = look up to sb: ngưỡng mộ ai
+
+aspire to = want = desire to: mong muốn 
+
+
+
+
+compete for something - cạnh tranh cho cái gì
+
+The two teams will compete for the championship title in the final match.
+
+compete with somebody/something- cạnh tranh với ai/cái gì
+
+The two companies compete with each other for customers in the same market.
+Students often compete with their classmates to achieve the highest grades in the class.
+
+compete against somebody/something - Cạnh tranh với ai/cái gì
+
+The two teams will compete against each other in the championship game next week.
+Our company must compete against industry leaders to gain market share and increase profits.
+
