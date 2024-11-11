@@ -65,3 +65,31 @@ compete against somebody/something - Cạnh tranh với ai/cái gì
 The two teams will compete against each other in the championship game next week.
 Our company must compete against industry leaders to gain market share and increase profits.
 
+exceptionally = tough = extremely
+
+nervous = apprehensive
+
+hire = recruit = enroll = employ = engage
+
+genuine = sincere = honest
+
+determine = decise
+
+universal = worldwide = conprehensive = common
+
+tough = hard
+
+fall out = argue = disagree
+
+fall out >< make up
+
+fierce = cruel = strong = intense = terrible 
+
+virtually = nearly = almost = practically = close to
+
+exceptionally = abnormally = strangely
+
+consist = include = contain 
+
+extreme >< slight
+
