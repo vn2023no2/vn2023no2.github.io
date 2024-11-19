@@ -93,3 +93,22 @@ consist = include = contain
 
 extreme >< slight
 
+embrace (v): đón nhận, chấp nhận = accept = adopt
+embrace (v): ôm = hub
+
+morsel (n): miếng, miếng nhỏ = small piece
+
+sponsorship (n): tài trợ = aid = funding 
+
+conduct (v): tổ chức = organize
+conduct (v): dẫn dắt = lead
+
+beneath (adv): bên dưới = below
+
+appeal (v): thu hút = attract
+
+chunk (n) : miếng, mẩu = piece
+
+aspire (to) (v): khao khát, mong muốn = desire (to) = want (to) = wish (to) = hope (to)
+
+
