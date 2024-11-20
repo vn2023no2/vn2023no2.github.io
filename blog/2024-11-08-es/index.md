@@ -1,6 +1,6 @@
 ---
-slug: welcome 123
-title: Welcome 123
+slug: welcome 123456
+title: Welcome 123456
 authors: [slorber, yangshun]
 tags: [facebook, hello, docusaurus]
 ---
@@ -18,7 +18,7 @@ The blog post date can be extracted from filenames, such as:
 
 A blog post folder can be convenient to co-locate blog post images:
 
-![Docusaurus Plushie](./docusaurus-plushie-banner.jpeg)
+<!-- ![Docusaurus Plushie](./docusaurus-plushie-banner.jpeg) -->
 
 The blog supports tags as well!
 
