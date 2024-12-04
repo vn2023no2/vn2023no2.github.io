@@ -111,4 +111,9 @@ chunk (n) : miếng, mẩu = piece
 
 aspire (to) (v): khao khát, mong muốn = desire (to) = want (to) = wish (to) = hope (to)
 
+propose (v): đề xuất
+             cầu hôn
+proposal (n): sự đề xuất
+              lời cầu hôn
+
 
