@@ -107,7 +107,7 @@ beneath (adv): bên dưới = below
 
 appeal (v): thu hút = attract
 
-chunk (n) : miếng, mẩu = piece
+chunk (n) : miếng, mẩu = piece = slice
 
 aspire (to) (v): khao khát, mong muốn = desire (to) = want (to) = wish (to) = hope (to)
 
@@ -115,5 +115,20 @@ propose (v): đề xuất
              cầu hôn
 proposal (n): sự đề xuất
               lời cầu hôn
+
+
+exterior (adj): bên ngoài = external = outdoor 
+
+fascinate (v): làm mê hoặc, làm lôi cuốn = enchant = delight (làm hài lòng)
+
+fascinating (adj): Hấp dẫn, lôi cuốn (cực kỳ thú vị và hấp dẫn)
+
+intense (adj): mãnh liệt, kịch liệt = fierce = enormous = extreme = exceptionally
+
+except (v): ngoại trừ, loại trừ = exclude
+
+exceptionally (adv): đặc biệt, cực kỳ
+
+exclusively (adv): độc quyền, duy nhất
 
 
