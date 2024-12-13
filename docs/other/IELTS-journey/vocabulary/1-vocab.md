@@ -132,3 +132,11 @@ exceptionally (adv): đặc biệt, cực kỳ
 exclusively (adv): độc quyền, duy nhất
 
 
+spot (n): điểm, nơi, chỗ = place = location = site = position = point 
+
+customary (adj): phong tục, tập quán = traditional = conventional 
+
+demonstrate (v): chứng minh = prove
+
+justify (v): bào chữa, biện hộ
+
