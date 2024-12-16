@@ -30,9 +30,21 @@ increase[30s] = count at 2m - count at 1.5m = 4423 - 4402 = 21
 rate[1m]      = (count at 2m - count at 1m) / 60 = (4423 - 4381) / 60 = 0.7
 
 
-
-
 `Reference:`   
+
+
+# Metric types (4 loại)
+
+## Counter
+- Không dùng cho các metric có thể giảm theo thời gian.
+
+## Gauge
+- Dùng cho các metric có thể tăng hoặc giảm theo thời gian.
+
+## Histogram
+
+## Summary
+
 
 
 
