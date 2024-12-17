@@ -2,7 +2,17 @@
 sidebar_position: 1
 ---
 
-# Function
+# Operators
+
+
+`on (instance, job) group_left (version, commit)` - this is Prometheus equivalent of a left join from SQL. It uses the instance and job labels, which are automatically added by Prometheus, to group join time series. It’s then going to add the version and commit labels from the time series on the right to the series on the left.
+
+
+`References:`     
+https://prometheus.io/docs/prometheus/latest/querying/operators/     
+https://autometrics.dev/blog/inside-some-complex-prometheus-queries    
+
+# Functions
 
 `increase` function - tính toán tốc độ thay đổi của metric.
 `rate` function - tính toán tốc độ thay đổi `theo giây` của metric.
@@ -25,25 +35,28 @@ Time Count increase  rate(count[1m])
 45s  4440  0          0.56666666
 3m   4456  16         0.53333333
 ```
-
-increase[30s] = count at 2m - count at 1.5m = 4423 - 4402 = 21
+```
+increase[30s] = count at 2m - count at 1.5m = 4423 - 4402 = 21   
 rate[1m]      = (count at 2m - count at 1m) / 60 = (4423 - 4381) / 60 = 0.7
-
+```
 
 `Reference:`   
-
+https://prometheus.io/docs/prometheus/latest/querying/functions/      
 
 # Metric types (4 loại)
 
 ## Counter
-- Không dùng cho các metric có thể giảm theo thời gian.
+- Không dùng cho các metric có thể giảm theo thời gian.      
 
-## Gauge
-- Dùng cho các metric có thể tăng hoặc giảm theo thời gian.
+## Gauge    
+- Dùng cho các metric có thể tăng hoặc giảm theo thời gian.    
 
 ## Histogram
 
 ## Summary
+
+`Reference:`    
+https://prometheus.io/docs/concepts/metric_types/    
 
 
 
