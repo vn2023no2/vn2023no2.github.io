@@ -40,8 +40,13 @@ increase[30s] = count at 2m - count at 1.5m = 4423 - 4402 = 21
 rate[1m]      = (count at 2m - count at 1m) / 60 = (4423 - 4381) / 60 = 0.7
 ```
 
+```
+Hàm `increase` và `rate` sẽ trả về kết quả `Empty query result` nếu trong khoảng thời gian [t] metric [c] không bao phủ ít nhất 2 samples. Vì vậy hãy xem xét tăng khoảng thời gian lên để có thể tính toán được.   
+```
+
 `Reference:`   
-https://prometheus.io/docs/prometheus/latest/querying/functions/      
+https://prometheus.io/docs/prometheus/latest/querying/functions/     
+https://stackoverflow.com/a/71662506/14312225       
 
 # Metric types (4 loại)
 
