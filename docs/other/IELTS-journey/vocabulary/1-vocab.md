@@ -140,3 +140,12 @@ demonstrate (v): chứng minh = prove
 
 justify (v): bào chữa, biện hộ
 
+incur (v): gánh chịu = suffer
+
+suffer (v): chịu đựng = tolerate = bear = endure = substain
+
+foster (v): khuyến khích = encourage = stimulate
+
+syllabus (n): chương trình học = curriculum = course of study = schedule
+              giáo án
+
