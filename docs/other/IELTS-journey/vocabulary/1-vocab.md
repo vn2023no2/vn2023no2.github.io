@@ -69,9 +69,9 @@ exceptionally = tough = extremely
 
 nervous = apprehensive
 
-hire = recruit = enroll = employ = engage
+hire (v) = recruit = enroll = employ = engage
 
-genuine = sincere = honest
+genuine (adj) = sincere = honest
 
 determine = decise
 
@@ -148,4 +148,7 @@ foster (v): khuyến khích = encourage = stimulate
 
 syllabus (n): chương trình học = curriculum = course of study = schedule
               giáo án
+
+devote (v): cống hiến = dedicate
+
 
