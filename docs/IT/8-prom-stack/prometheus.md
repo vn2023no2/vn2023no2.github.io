@@ -48,6 +48,31 @@ Hàm `increase` và `rate` sẽ trả về kết quả `Empty query result` nế
 https://prometheus.io/docs/prometheus/latest/querying/functions/     
 https://stackoverflow.com/a/71662506/14312225       
 
+# Service Discovery
+Service discovery is a fundamental concept in Prometheus architecture. It allows Prometheus to automatically discover and monitor targets (systems or services) without requiring manual configuration for each individual target.
+
+Kubernetes is the perfect example for dynamic targets. Here, you cannot use the static targets method, because targets (pods) in a Kubernetes cluster is ephemeral in nature and could be short lived.
+
+
+```
+scrape_configs:
+    - job_name: 'kubernetes-apiservers'
+    kubernetes_sd_configs:
+    - role: endpoints
+    scheme: https
+    tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+    relabel_configs:
+    - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+        action: keep
+        regex: default;kubernetes;https
+```
+
+`Reference:`   
+https://medium.com/@tech_18484/understand-prometheus-architecture-1ab83afd53b8
+https://devopscube.com/prometheus-architecture/
+
 # Metric types (4 loại)
 
 ## Counter
