@@ -19,17 +19,41 @@ Chúng ta cần phân biệt 2 loại user được định nghĩa trong k8s `se
 
 Lưu ý: Có thể mọi người không đồng ý sử dụng Service Account cho `normal user`, nhưng chưa thấy bất kỳ tài liệu nào của K8S viết rằng không nên sử dụng cho `normal user`. Vì vậy, tôi nghĩ chúng ta có thể sử dụng `Service Account` để tạo user cho việc sử dụng `kubectl` hoặc `HTTP Request`.
 
+Cả `normal user` và `service account` đều phải thuộc một hoặc nhiều group. Có 4 loại group mặc định là 
+- system:unauthenticated - được gán cho user không authenticated thành công.
+- system:authenticated - được gán cho user authenticated thành công.
+- system:serviceaccounts - group cho toàn bộ ServiceAccounts.   
+- system:serviceaccounts:<namespace> - group cho toàn bộ ServiceAccounts trong một namespace.   
+
+
 ## Service Account
-- Service Account là một resource của k8s
-- Service Account được sử dụng cho pod sẽ được mount vào pod ở path `/var/run/secrets/kubernetes.io/serviceaccount` 
+- Service Account là một resource của k8s.
+- Service Account được sử dụng cho pod sẽ được mount vào pod ở path `/var/run/secrets/kubernetes.io/serviceaccount`. Mặc định mỗi namespace đều có 1 service acocunt là `default` và khi pod được tạo thì sẽ sử dụng service account này.
+- 
 
 
 # Role Based Access Control
+Nếu như service account và các `external service` chỉ dùng để authentication thì Role Based Access Control sẽ giúp chúng ta việc Authorization cho các `normal user` hoặc `pod`.
 
-RBAC có 4 loại resources ==> Roles: định nghĩa verb nào có thể được thực hiện lên trên namespace resource.
-                         ==> ClusterRoles: định nghĩa verb nào có thể được thực hiện lên trên cluster resource.
-                         ==> RoleBindings: gán Roles tới một SA.
-                         ==> ClusterRoleBindings: gán ClusterRoles tới SA.
+## Action
+Các action có thể thực hiện với RBAC thì như sau
+| Action    | Verb   |
+| --------- | ------ |
+| HEAD, GET | get    |
+| POST      | create |
+| PUT       | update |
+| PATCH     | patch  |
+| DELETE    | delete |  
+
+## Các resource để định nghĩa RBAC
+
+RBAC có 4 loại resources ==> Roles: định nghĩa verb nào có thể được thực hiện lên trên namespace resource, sẽ thuộc namespace.     
+                         ==> ClusterRoles: định nghĩa verb nào có thể được thực hiện lên trên cluster resource, không thuộc bất kỳ một namespace nào.    
+                         ==> RoleBindings: gán Roles tới một Service Account hoặc user.   
+                         ==> ClusterRoleBindings: gán ClusterRoles tới một Service Account hoặc user.     
+
+# Ví dụ
+
 
 
 `References:`    
