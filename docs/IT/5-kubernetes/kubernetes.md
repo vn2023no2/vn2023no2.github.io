@@ -40,6 +40,8 @@ spec:
           averageUtilization: 50
 ```
 
+`Reference:`
+https://spacelift.io/blog/kubernetes-hpa-horizontal-pod-autoscaler    
 
 # Service Discovery
 Service Discovery là một thuật ngữ chỉ cách các ứng dụng tự động phát hiện địa chỉ của nhau thông qua Service.    
