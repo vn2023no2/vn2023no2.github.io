@@ -16,7 +16,29 @@ Các chiến lược sau đây được coi là "Chiến lược triển khai n�
 - A/B testing - Deploy version mới cho 1 lượng nhỏ end-user dựa vào điều kiện như (HTTP header, cookie, …)
 - ...
 
+# HPA
+- HPA sclale theo giá trị sử dụng trung bình của pod để duy trì mức sử dụng resource trung bình theo target.    
 
+```
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: demo
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: demo
+  minReplicas: 3
+  maxReplicas: 9
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+```
 
 
 # Service Discovery
