@@ -70,8 +70,9 @@ scrape_configs:
 ```
 
 `Reference:`   
-https://medium.com/@tech_18484/understand-prometheus-architecture-1ab83afd53b8
-https://devopscube.com/prometheus-architecture/
+https://medium.com/@tech_18484/understand-prometheus-architecture-1ab83afd53b8    
+https://devopscube.com/prometheus-architecture/   
+https://devalpharm.medium.com/deploying-prometheus-and-grafana-on-kubernetes-using-manifest-files-3761792d12a4     
 
 # Metric types (4 loại)
 
