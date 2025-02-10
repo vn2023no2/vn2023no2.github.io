@@ -10,14 +10,14 @@ HTTP Message ==> HTTP Request
 
 # HTTP Request 
 HTTP Request bao gồm:
-- Request line: <Method> <Request-URI> <HTTP-Version>
+- Request line: `<Method> <Request-URI> <HTTP-Version>`
 - Header: bao gồm một hoặc nhiều header
 - Một dòng trống
 - Message Body (Optional)
 
 # HTTP Response
 HTTP Response bao gồm:
-- Status line: <HTTP-Version> <Status-Code> <Reason-Phrase>
+- Status line: `<HTTP-Version> <Status-Code> <Reason-Phrase>`
 - Header: bao gồm một hoặc nhiều header
 - Một dòng trống
 - Message Body (Optional)

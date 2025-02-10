@@ -25,7 +25,7 @@ Cả `normal user` và `service account user` đều phải thuộc một hoặc
 - system:unauthenticated - được gán cho user không authenticated thành công.
 - system:authenticated - được gán cho user authenticated thành công.
 - system:serviceaccounts - group cho toàn bộ ServiceAccounts.   
-- system:serviceaccounts:<namespace> - group cho toàn bộ ServiceAccounts trong một namespace.   
+- system:serviceaccounts:\<namespace\>  - group cho toàn bộ ServiceAccounts trong một namespace.   
 
 
 ## Service Account

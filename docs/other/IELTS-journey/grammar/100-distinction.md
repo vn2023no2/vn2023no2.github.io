@@ -4,11 +4,11 @@ sidebar_position: 100
 
 # By contrast / In contrast và On the contrary
 
-| Đặc điểm          | In contrast                                 | On the contrary                                |
-| ----------------- | ------------------------------------------- | ---------------------------------------------- |
-| **Nghĩa**         | Tuy nhiên, Mặt khác                         | Trái lại, Ngược lại                            |
-| **Từ đồng nghĩa** | However<br>On the other hand<br>By contrast | Conversely                                     |
-| **Mục đích dùng** | So sánh 2 đối tượng khác nhau               | Ám chỉ 1 đối tượng nhưng có 2 nghĩa ngược nhau |
+| Đặc điểm          | In contrast                                     | On the contrary                                |
+| ----------------- | -------------------------------------------     | ---------------------------------------------- |
+| **Nghĩa**         | Tuy nhiên, Mặt khác                             | Trái lại, Ngược lại                            |
+| **Từ đồng nghĩa** | However<br />On the other hand<br />By contrast | Conversely                                     |
+| **Mục đích dùng** | So sánh 2 đối tượng khác nhau                   | Ám chỉ 1 đối tượng nhưng có 2 nghĩa ngược nhau |
 
 
 `Phân biệt In contrast và On the contrary`
