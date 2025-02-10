@@ -3,12 +3,14 @@ sidebar_position: 4
 ---
 
 # 1. Stiky session?
-Sticky sessions, còn được gọi là session affinity, là một khái niệm quan trọng trong loadbalancer , đảm bảo các yêu cầu của người dùng trong một phiên luôn được chuyển hướng đến cùng một máy chủ. Kỹ thuật này rất quan trọng trong các tình huống mà dữ liệu phiên được lưu trữ cục bộ trên từng máy chủ.   
+Sticky sessions, còn được gọi là session affinity, là một khái niệm quan trọng trong loadbalancer , đảm bảo các yêu cầu của người dùng trong một phiên luôn được chuyển hướng đến cùng một máy chủ trong một khoảng thời gian nhất định. Kỹ thuật này rất quan trọng trong các tình huống mà dữ liệu phiên được lưu trữ cục bộ trên từng máy chủ.   
 
+Ví dụ phổ biến là với các ứng dụng stateful khi toàn bộ dữ liệu được lưu trong từng server và dữ liệu không chia sẻ giữa các server với nhau. Khi đó token authentication được lưu vào session để xác nhận người dùng đã đăng nhập vào hệ thống, session lại được lưu vào từng server, điều này khiến cho người dùng đã đăng nhập bị đăng xuất ra khi request của họ bị điều hướng sang server web khác với server nhận request đăng nhập của họ.       
 # 2. Enabled sticky session trong kubernetes   
 Trong kubernetes có 2 cách để có thể cấu hình được sticky session.
 ## 2.1 Enabled ở service  
-Cấu hình ở tầng service chỉ hoạt động ở layer 4 (TCP/UDP) nên chỉ có thể định tuyến dựa trên IP của Client và thường phù hợp cho các dịch vụ truy cập trực tiếp vào kubernetes qua service được cấu hình type là `ClusterIP` hoặc `LoadBalancer` vì cần đảm bảo IP mà service nhận được là IP của Client.
+Cấu hình ở tầng service chỉ hoạt động ở layer 4 (TCP/UDP) nên chỉ có thể định tuyến dựa trên IP của Client. Vì vậy, cần đảm bảo rằng IP mà service nhận được là IP của Client.    
+Do đó, cách cấu hình này thường phù hợp cho các dịch vụ truy cập trực tiếp vào kubernetes qua `service` (thường được cấu hình `service type` là `ClusterIP` hoặc `LoadBalancer`).     
 Cần đảm bảo các property nào có trong cấu hình của service.
 ```
 # The following adds session affinity
@@ -63,4 +65,6 @@ https://docs.mirantis.com/mke/3.8/ops/deploy-apps-k8s/nginx-ingress/configure-st
 https://pauldally.medium.com/session-affinity-and-kubernetes-proceed-with-caution-8e66fd5deb05     
 https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/    
 https://dev.to/danielepolencic/sticky-sessions-and-canary-releases-in-kubernetes-5a92    
+https://kubernetes.io/docs/reference/networking/virtual-ips/#session-affinity   
+https://docs.vngcloud.vn/vng-cloud-document/vn/vserver/compute-hcm03-1a/vlb-load-balancer-new-version/application-load-balancer/pool/enable-sticky-session  
 
