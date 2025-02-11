@@ -16,8 +16,8 @@ Authorization (phân quyền)  ==> Sử dụng RBAC (Role Based Access Control).
 ```                          
 
 Chúng ta cần phân biệt 2 loại user được định nghĩa trong k8s `service account user` và `normal user`:
-- normal user: đại diện cho user của người dùng, xác thực với K8S Cluster bằng dịch vụ bên ngoài (có thể xác thực bằng private key, username và password, OAuth service, ...)
-- service account: thường dùng cho process chạy trong pod. Dùng resource `service account` của k8s để authentication - đây là dịch vụ authentication được cung cấp bởi K8S và xác thực bằng token.
+- normal user: đại diện cho user của người dùng, xác thực với K8S Cluster bằng dịch vụ bên ngoài (có thể xác thực bằng private key, username và password, OAuth service, ...). Người dùng thường tương tác K8S Cluster bằng việc sử dụng `kubectl` hoặc `HTTP Request`.      
+- service account user: thường dùng cho process chạy trong pod. Dùng resource `service account` của k8s để authentication - đây là dịch vụ authentication được cung cấp bởi K8S và xác thực bằng token.
 
 Lưu ý: Có thể mọi người không đồng ý sử dụng `Service Account resource` cho `normal user`, nhưng chưa thấy bất kỳ tài liệu nào của K8S viết rằng không nên sử dụng cho `normal user`. Vì vậy, tôi nghĩ chúng ta có thể sử dụng `Service Account resource` để tạo user cho việc sử dụng `kubectl` hoặc `HTTP Request`.
 
@@ -55,23 +55,30 @@ RBAC có 4 loại resources ==> Roles: định nghĩa verb nào có thể đư�
                          ==> ClusterRoleBindings: gán ClusterRoles tới một Service Account hoặc user.     
 
 # Ví dụ
-### Ví dụ về việc sử dụng ServiceAccount, Roles, RoleBindings để tạo user trong K8S
-Tạo một Service Account resource 
+### Ví dụ về việc sử dụng ServiceAccount, Role, RoleBinding để tạo user trong K8S    
+**Đảm bảo rằng RBAC đã được enabled**    
+```
+$ kubectl api-versions | grep rbac
+rbac.authorization.k8s.io/v1
+```
+
+**Tạo một Service Account resource**    
 ```
 # ServiceAccount
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: demo-sa
+  name: demo-user-sa
   namespace: default
 ```
+
 Apply vào K8S
 ```
-kubectl apply -f demo-sa.yaml
+kubectl apply -f demo-user-sa.yaml
 ```
 
 
-Tạo role
+**Tạo role**     
 Cấu hình role bên dưới cho phép thực hiện các hành động `get, list, create, update` đối với pods.
 Chi tiết:
 - apiGroup: [""] - điều này nghĩa là role áp dụng cho các tài nguyên [core API](https://miro.medium.com/v2/resize:fit:1400/1*IqxBLalz8WP4ZJBM8uyx9g.png) của Kubernetes như: pod, service, deployment, ...
@@ -101,7 +108,12 @@ kubectl apply -f demo-role.yaml
 ```
 
 
-Tạo RoleBinding
+**Tạo RoleBinding để gán Role cho ServiceAccount**     
+Role đã được tạo nhưng chưa được gán cho ServiceAccount. Vì vậy, phải tạo RoleBinding để gán Role cho ServiceAcocunt.   
+Trong phần định nghĩa của RoleBinding, chúng ta quan tâm 2 thông tin:
+- `roleRef` - Xác định `Role` sẽ được gán.
+- `subjects` - Danh sách một hoặc nhiều `user` hoặc `ServiceAccount` để chỉ định `Role`.
+Cấu hình bên dưới gán Role `demo-role` cho ServiceAccount `demo-user-sa`.
 ```
 # RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -124,6 +136,47 @@ Apply vào K8S
 kubectl apply -f demo-role-binding.yaml
 ```
 
+**Tiếp theo, chúng ta sẽ tiến hành lấy token của ServiceAccount vừa tạo để cấu hình context cho kubectl**      
+Đầu tiên, lấy token của ServiceAccount đã tạo
+```
+$ TOKEN=$(kubectl create token demo-user-sa)
+```
+
+Tiếp theo, thêm ServiceAccount là thông tin xác thực của của context
+```
+$ kubectl config set-credentials demo-user --token=$TOKEN
+User "demo-user" set.
+```
+
+Tiến hành tạo `context`
+```
+$ kubectl config set-context demo-user-context --cluster=default --user=demo-user
+Context "demo-user-context" created.
+```
+
+Trước khi chuyển sang `context` mới, hãy kiểm tra `context` đang sử dụng
+```
+$ kubectl config current-context
+default
+```
+
+Chuyển từ `context` hiện tạo sang `context` vừa tạo
+```
+$ kubectl config use-context demo-user-context
+Switched to context "demo-user-context".
+```
+
+OK, bây giờ bạn có thể sử dụng `context` mới để list Pod trong namespace `default`
+```
+$ kubectl get pods
+```
+
+Chúng ta sẽ thử list một resource mà chưa được phân quyền    
+```
+$ kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:default:demo-user-sa" cannot list resource "pods" in API group "" in the namespace "default"
+```
+Chúng ta sẽ nhận được lỗi như trên.
 
 `References:`    
 https://spacelift.io/blog/kubernetes-rbac       
