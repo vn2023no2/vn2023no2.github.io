@@ -6,7 +6,7 @@ Authentication (xác thực) ==> Sử dụng Service Account (authentication qua
 Authorization (phân quyền)  ==> Sử dụng RBAC (Role Based Access Control).        
 
 
-# Authentication
+# 1. Authentication
 ```
 2 loại user   ==> normal user                  ==> kubectl      
                   (humans user)                ==> HTTP Request với token    
@@ -34,10 +34,10 @@ Cả `normal user` và `service account user` đều phải thuộc một hoặc
 - Service Account được sử dụng cho pod sẽ được mount vào pod ở path `/var/run/secrets/kubernetes.io/serviceaccount`. Mặc định mỗi namespace đều có 1 service acocunt là `default` và khi pod được tạo thì sẽ sử dụng service account này.
 
 
-# Authorization (Role Based Access Control)
+# 2. Authorization (Role Based Access Control)
 Nếu như service account và các `external service` chỉ dùng để authentication thì Role Based Access Control trong K8S sẽ giúp chúng ta việc Authorization cho các `normal user` hoặc `service account user`.
 
-## Action
+## 2.1 Action
 Các action có thể thực hiện với RBAC thì như sau
 | Action    | Verb   |
 | --------- | ------ |
@@ -47,15 +47,15 @@ Các action có thể thực hiện với RBAC thì như sau
 | PATCH     | patch  |
 | DELETE    | delete |  
 
-## Các resource để định nghĩa RBAC
+## 2.2 Các resource để định nghĩa RBAC
 
 RBAC có 4 loại resources ==> Roles: định nghĩa verb nào có thể được thực hiện lên trên namespace resource, sẽ thuộc namespace.     
                          ==> ClusterRoles: định nghĩa verb nào có thể được thực hiện lên trên cluster resource, không thuộc bất kỳ một namespace nào.    
                          ==> RoleBindings: gán Roles tới một Service Account hoặc user.   
                          ==> ClusterRoleBindings: gán ClusterRoles tới một Service Account hoặc user.     
 
-# Ví dụ
-### Ví dụ về việc sử dụng ServiceAccount, Role, RoleBinding để tạo user trong K8S    
+# 3. Ví dụ
+## 3.1 Ví dụ về việc sử dụng ServiceAccount, Role, RoleBinding để tạo user trong K8S    
 **Đảm bảo rằng RBAC đã được enabled**    
 ```
 $ kubectl api-versions | grep rbac
@@ -178,12 +178,16 @@ Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:de
 ```
 Chúng ta sẽ nhận được lỗi như trên.
 
+## 3.2 
+
 `References:`    
 https://spacelift.io/blog/kubernetes-rbac       
 https://www.linkedin.com/pulse/create-user-kubernetes-kubectl-service-account-vikash-kumar-singh       
 https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/      
 https://kubernetes.io/docs/reference/access-authn-authz/authentication/      
 https://www.strongdm.com/blog/kubernetes-authentication    
+
+https://www.strongdm.com/blog/kubernetes-authentication   
 
 
 

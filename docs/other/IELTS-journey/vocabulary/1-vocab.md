@@ -151,4 +151,8 @@ syllabus (n): chương trình học = curriculum = course of study = schedule
 
 devote (v): cống hiến = dedicate
 
+punctual (adj) = on time : đúng giờ
 
+predominantly (adverb) = mainly = mostly: hầu hết, phần lớn
+
+sponsorship (n) = funding: tài trợ, sự tài trợ
