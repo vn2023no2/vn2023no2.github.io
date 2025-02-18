@@ -16,7 +16,7 @@ Authorization (phân quyền)  ==> Sử dụng RBAC (Role Based Access Control).
 ```                          
 
 Chúng ta cần phân biệt 2 loại user được định nghĩa trong k8s `service account user` và `normal user`:
-- normal user: đại diện cho user của người dùng, xác thực với K8S Cluster bằng dịch vụ bên ngoài (có thể xác thực bằng private key, username và password, OAuth service, ...). Người dùng thường tương tác K8S Cluster bằng việc sử dụng `kubectl` hoặc `HTTP Request`.      
+- normal user: đại diện cho user của người dùng, xác thực với K8S Cluster bằng dịch vụ bên ngoài (có thể xác thực bằng certificate, username và password, OAuth service, ...). Người dùng thường tương tác K8S Cluster bằng việc sử dụng `kubectl` hoặc `HTTP Request`.      
 - service account user: thường dùng cho process chạy trong pod. Dùng resource `service account` của k8s để authentication - đây là dịch vụ authentication được cung cấp bởi K8S và xác thực bằng token.
 
 Lưu ý: Có thể mọi người không đồng ý sử dụng `Service Account resource` cho `normal user`, nhưng chưa thấy bất kỳ tài liệu nào của K8S viết rằng không nên sử dụng cho `normal user`. Vì vậy, tôi nghĩ chúng ta có thể sử dụng `Service Account resource` để tạo user cho việc sử dụng `kubectl` hoặc `HTTP Request`.
@@ -55,7 +55,7 @@ RBAC có 4 loại resources ==> Roles: định nghĩa verb nào có thể đư�
                          ==> ClusterRoleBindings: gán ClusterRoles tới một Service Account hoặc user.     
 
 # 3. Ví dụ
-## 3.1 Ví dụ về việc sử dụng ServiceAccount, Role, RoleBinding để tạo user trong K8S    
+## 3.1 Tạo user trong K8S với ServiceAccount, Role, RoleBinding      
 **Đảm bảo rằng RBAC đã được enabled**    
 ```
 $ kubectl api-versions | grep rbac
@@ -178,41 +178,76 @@ Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:de
 ```
 Chúng ta sẽ nhận được lỗi như trên.
 
-## 3.2 
+## 3.2 Tạo user trong K8S với Certificate, Role, RoleBinding
+Ở phương pháp này chúng ta sẽ dùng Certificate để xác thực với K8S Cluster thay vì ServiceAccount.    
+Đây là một trong những cách đơn giản nhất để xác thực người dùng với K8S Cluster.   
+**Đầu tiên, chúng ta cần tạo certificate cho user với OpenSSL**       
+Certificate gồm 1 file private key và 1 file Certificate Signing Request (CSR).
+```
+openssl genrsa -out demo-user2.key 2048
+openssl req -new -key demo-user2.key -out demo-user2.csr
+```
+**Tiến hành ký certificate dựa trên file CSR vừa tạo và Kubernetes cluster's CA**     
+Convert file `csr` đã tạo ở bước trước thành Certificate Signing Request (CSR) resource trong Kubernetes để Kubernetes cluster’s CA có thể ký.      
+`request` field trong `CertificateSigningRequest` resource nhận định dạng base64 không có khoảng trắng nên chúng ta cần convert file demo-user2.csr sang base64 và bỏ khoảng trắng.      
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+name: demo-user2-csr
+spec:
+request: $(cat demo-user2.csr | base64 | tr -d '\n')
+signerName: kubernetes.io/kube-apiserver-client
+usages:
+- client auth
+EOF
+```
+Ký
+```
+kubectl certificate approve demo-user2-csr
+```
+
+**Tạo context cho kubectl**
+Lấy certificate đã ký
+```
+kubectl get csr demo-user2-csr -o jsonpath='{.status.certificate}' | base64 -d > demo-user2.crt
+```
+Tạo context
+```
+kubectl config set-credentials demo-user2 --client-certificate=demo-user2.crt --client-key=demo-user2.key
+kubectl config set-context demo-user2-context --cluster=default --user=demo-user2
+kubectl config use-context demo-user2-context
+```
+**Tiếp theo, chúng ta sẽ tiến hành phân quyền cho user vừa tạo bằng RBAC**
+Ở đây, để nhanh chóng chúng ta sẽ tạo RBAC và assigned bằng `kubectl command` thay vì tạo file `YAML` như ở phần ServiceAccount.    
+Cấu hình bên dưới cho phép `demo-user2` user có các quyền get, list, watch, create, update đối với các pod ở `default` namespace.    
+```
+kubectl create role demo2-role --verb=get,list,watch,create,update --resource=pods --namespace=default
+kubectl create rolebinding demo2-role-binding --role=pod-reader --user=demo-user2 --namespace=default
+```
+**Cuối cùng, kiểm tra user vừa tạo**
+Với các resource đã được phân quyền
+```
+kubectl get pods
+```
+Với các resrouce chưa được phân quyền
+```
+kubectl get svc
+```
+
+
+
 
 `References:`    
 https://spacelift.io/blog/kubernetes-rbac       
 https://www.linkedin.com/pulse/create-user-kubernetes-kubectl-service-account-vikash-kumar-singh       
 https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/      
 https://kubernetes.io/docs/reference/access-authn-authz/authentication/      
+    
 https://www.strongdm.com/blog/kubernetes-authentication    
-
-https://www.strongdm.com/blog/kubernetes-authentication   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https://blog.nashtechglobal.com/creating-a-user-in-kubernetes/     
+https://www.cncf.io/blog/2020/07/31/kubernetes-rbac-101-authentication/    
+https://aungzanbaw.medium.com/a-step-by-step-guide-to-creating-users-in-kubernetes-6a5a2cfd8c71       
 
 

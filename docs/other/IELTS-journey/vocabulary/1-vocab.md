@@ -156,3 +156,9 @@ punctual (adj) = on time : đúng giờ
 predominantly (adverb) = mainly = mostly: hầu hết, phần lớn
 
 sponsorship (n) = funding: tài trợ, sự tài trợ
+
+receive (v): nhận, tiếp nhận     
+reception (n): sự tiếp nhận    
+          (n): sự tiếp khách    
+
+receipt (n): hoá đơn, biên lai = bill = invoice    
