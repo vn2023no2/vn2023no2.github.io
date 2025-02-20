@@ -2,9 +2,12 @@
 sidebar_position: 3
 ---
 
-Authentication (xác thực) ==> Sử dụng Service Account (authentication qua token, đây là cách authentication duy nhất được quản lý bởi K8S) hoặc có thể dùng các `external service` để xác thực với K8S Cluster.      
+Giống như bất kỳ hệ thống nào khác, Kubernetes cũng cung cấp cho chúng ta hệ thống Authentication (Xác thực) và Authorization (Phân quyền) giúp đảm bảo tính bảo mật và quản lý truy cập đối với các nguồn tài nguyên trong cluster.  
+```  
+Authentication (xác thực)   ==> Sử dụng Service Account (authentication qua token, đây là cách authentication duy nhất được quản lý bởi K8S).      
+                            ==> Sử dụng các `external service` để xác thực với K8S Cluster.      
 Authorization (phân quyền)  ==> Sử dụng RBAC (Role Based Access Control).        
-
+```
 
 # 1. Authentication
 ```
@@ -15,7 +18,7 @@ Authorization (phân quyền)  ==> Sử dụng RBAC (Role Based Access Control).
                   (dùng cho Pod)      
 ```                          
 
-Chúng ta cần phân biệt 2 loại user được định nghĩa trong k8s `service account user` và `normal user`:
+Trước tiên, chúng ta cần phân biệt 2 loại user được định nghĩa trong k8s `service account user` và `normal user`:
 - normal user: đại diện cho user của người dùng, xác thực với K8S Cluster bằng dịch vụ bên ngoài (có thể xác thực bằng certificate, username và password, OAuth service, ...). Người dùng thường tương tác K8S Cluster bằng việc sử dụng `kubectl` hoặc `HTTP Request`.      
 - service account user: thường dùng cho process chạy trong pod. Dùng resource `service account` của k8s để authentication - đây là dịch vụ authentication được cung cấp bởi K8S và xác thực bằng token.
 
@@ -32,6 +35,8 @@ Cả `normal user` và `service account user` đều phải thuộc một hoặc
 - Service Account là một resource của k8s.
 - Service Account này là một namespace resouce, nghĩa là chỉ có scope bên trong một namespace, ta không thể dùng ServiceAccount của namespace này cho một namespace khác được.   
 - Service Account được sử dụng cho pod sẽ được mount vào pod ở path `/var/run/secrets/kubernetes.io/serviceaccount`. Mặc định mỗi namespace đều có 1 service acocunt là `default` và khi pod được tạo thì sẽ sử dụng service account này.
+
+## External Service
 
 
 # 2. Authorization (Role Based Access Control)
@@ -216,7 +221,7 @@ kubectl get csr demo-user2-csr -o jsonpath='{.status.certificate}' | base64 -d >
 Tạo context
 ```
 kubectl config set-credentials demo-user2 --client-certificate=demo-user2.crt --client-key=demo-user2.key
-kubectl config set-context demo-user2-context --cluster=default --user=demo-user2
+kubectl config set-context demo-user2-context --cluster=default --user=demo-user2 -subj "/CN=USER-NAME"
 kubectl config use-context demo-user2-context
 ```
 **Tiếp theo, chúng ta sẽ tiến hành phân quyền cho user vừa tạo bằng RBAC**
