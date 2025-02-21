@@ -3,6 +3,9 @@ sidebar_position: 3
 ---
 
 Giống như bất kỳ hệ thống nào khác, Kubernetes cũng cung cấp cho chúng ta hệ thống Authentication (Xác thực) và Authorization (Phân quyền) giúp đảm bảo tính bảo mật và quản lý truy cập đối với các nguồn tài nguyên trong cluster.  
+Bài viết này sẽ giúp bạn hiểu được cách user được authentication và authorization trong Kubernetes cluster.        
+Đây là các dịch vụ giúp chúng ta thực hiện 2 việc đó trong K8S.     
+
 ```  
 Authentication (xác thực)   ==> Sử dụng Service Account (authentication qua token, đây là cách authentication duy nhất được quản lý bởi K8S).      
                             ==> Sử dụng các `external service` để xác thực với K8S Cluster.      
@@ -37,7 +40,13 @@ Cả `normal user` và `service account user` đều phải thuộc một hoặc
 - Service Account được sử dụng cho pod sẽ được mount vào pod ở path `/var/run/secrets/kubernetes.io/serviceaccount`. Mặc định mỗi namespace đều có 1 service acocunt là `default` và khi pod được tạo thì sẽ sử dụng service account này.
 
 ## External Service
-
+Ngoài dịch vụ `ServiceAccount` được cung cấp bởi K8S, chúng ta có thể sử dụng các dịch vụ bên ngoài để tiến hành xác thực với K8S như:
+- Static Token file.    
+- X.509 certificates.    
+- Open ID Connect.    
+- Authentication proxy.    
+- Webhook.    
+- ...
 
 # 2. Authorization (Role Based Access Control)
 Nếu như service account và các `external service` chỉ dùng để authentication thì Role Based Access Control trong K8S sẽ giúp chúng ta việc Authorization cho các `normal user` hoặc `service account user`.
@@ -184,7 +193,7 @@ Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:de
 Chúng ta sẽ nhận được lỗi như trên.
 
 ## 3.2 Tạo user trong K8S với Certificate, Role, RoleBinding
-Ở phương pháp này chúng ta sẽ dùng Certificate để xác thực với K8S Cluster thay vì ServiceAccount.    
+Ở phương pháp này chúng ta sẽ dùng X.509 Client Certificate để xác thực với K8S Cluster thay vì ServiceAccount.    
 Đây là một trong những cách đơn giản nhất để xác thực người dùng với K8S Cluster.   
 **Đầu tiên, chúng ta cần tạo certificate cho user với OpenSSL**       
 Certificate gồm 1 file private key và 1 file Certificate Signing Request (CSR).
@@ -254,5 +263,6 @@ https://www.strongdm.com/blog/kubernetes-authentication
 https://blog.nashtechglobal.com/creating-a-user-in-kubernetes/     
 https://www.cncf.io/blog/2020/07/31/kubernetes-rbac-101-authentication/    
 https://aungzanbaw.medium.com/a-step-by-step-guide-to-creating-users-in-kubernetes-6a5a2cfd8c71       
+https://learnk8s.io/auth-authz      
 
 
