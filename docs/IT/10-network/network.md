@@ -7,10 +7,8 @@ sidebar_position: 1
 Điều này cho phép bạn chỉ cần mở một `Outbound` rule một địa chỉ cụ thể ra bên ngoài và tất cả lưu lượng trả về sẽ được phép đi vào (thông qua một kênh đã được tạo) mà không cần mở `Inbound` rule.
 Khi cần chủ động gọi ra ngoài hoặc cho phép gọi vào thì bạn cần mở một `Outbound` hoặc `Inbound` khác.
 
+# Subnet
 
+x.x.x.255 - đây là địa chỉ broadcat
+x.x.x.252 - thường đây là địa chỉ trang quản trị trong dải subnet
 `Reference:`   
-
-
-
-
-
