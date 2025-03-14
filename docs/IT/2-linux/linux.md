@@ -42,3 +42,22 @@ Cả 3 đều sử dụng phím tắt `h` để cho phép bạn xem các phím t
 ## head và tail
 `head` - để xem những dòng đầu
 `tail` - để xem những dòng cuối
+
+## Linux command
+- Xem nội dung mà không cần giải nén
+  - Đối với file *.gz
+    ```
+    zcat filename.gz
+    ```
+  - Đối với file *.tar.gz
+    ```
+    tar -tf filename.tar.gz
+    vim filename.tar.gz
+    ```
+
+- Xem các file đã bị xoá nhưng vẫn bị hold bởi tiến trình dẫn đến không thể giải phóng disk
+    ```
+    lsof -a +L1
+    ```
+`Solution:` https://access.redhat.com/solutions/2316   
+    
