@@ -59,5 +59,14 @@ Cả 3 đều sử dụng phím tắt `h` để cho phép bạn xem các phím t
     ```
     lsof -a +L1
     ```
+## Một số ký tự trong linux
+Các ký tự nối command
+`command 1; command 2` -
+
+`command 1 && command 2` - 
+
+`command 1 || command 2` -
+
+https://unix.stackexchange.com/questions/208870/how-do-i-run-a-command-only-after-previous-command-is-unsuccessful-in-bash   
 `Solution:` https://access.redhat.com/solutions/2316   
     
