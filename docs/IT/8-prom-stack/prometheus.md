@@ -4,13 +4,52 @@ sidebar_position: 1
 
 # Operators
 
+## on - group_left
+`on (instance, job) group_left (version, commit)` - this is Prometheus equivalent of a left join from SQL. It uses the instance and job labels, which are automatically added by Prometheus, to group join time series. It’s then going to add the version and commit labels from the time series on the right to the series on the left.    
+( 
+- chỉ đơn giản là thêm label `version, commit` vào danh sách label của metric bên trái với những metric có instance và label khớp với nhau, khá giống với left join trong SQL, nhưng những kết quả không khớp sẽ bị loại bỏ thay vì được show như SQL.
+Kết quả:
+- metric bên trái được giữ nguyên value nhưng bỏ tên metric.     
 
-`on (instance, job) group_left (version, commit)` - this is Prometheus equivalent of a left join from SQL. It uses the instance and job labels, which are automatically added by Prometheus, to group join time series. It’s then going to add the version and commit labels from the time series on the right to the series on the left.
+)     
+**Chi tiết hơn thì đọc dưới đây:**      
+Điều này cung cấp cho chúng ta các liên kết một - một bên trong với PromQL, nhưng không phải các liên kết trái. Chúng ta cũng chỉ có các label khớp trong kết quả. Trước đây chúng ta đã xem xét cách thực hiện một số điều này:
+```
+a * on(foo, bar) group_left(baz) b
+```
+tương đương với
+```
+SELECT a.value * b.value, a.*, b.baz
+FROM a JOIN b ON (a.foo == b.foo AND a.bar == b.bar)
+```
+Nghĩa là chúng ta giữ tất cả các label ở phía bên trái, và thêm `baz` label ở phía bên phải của toán tử. Đây cũng là phép so khớp nhiều - một, do đó có thể có nhiều mẫu ở phía bên trái có cùng label `foo` và `bar` sẽ tương ứng với một giá trị ở bên phải.
 
+## label_replace
+```
+label_replace(metric{...}, "label-name-new", "$1", "label-name-current", "regex")
+```
+### Đổi tên label
+```
+label_replace(metric{...}, "label-name-new", "$1", "label-name-current", "(.+)")
+```
+### Đổi giá trị của label (tách IP)
+```
+label_replace(metric{...}, "label-name-new", "$1", "label-name-current", "(.*):(.*)")
+```
+
+Ex:
+```
+process_cpu_seconds_total{cluster_num="1", instance="1.1.1.1:9113", job="vmagent"}
+
+==> label_replace(process_cpu_seconds_total, "pod_ip", "$1", "instance", "(.*):(.*)") ==>
+
+process_cpu_seconds_total{cluster_num="1", instance="1.1.1.1:9113", job="vmagent", pod_ip="1.1.1.1"}
+```
 
 `References:`     
 https://prometheus.io/docs/prometheus/latest/querying/operators/     
 https://autometrics.dev/blog/inside-some-complex-prometheus-queries    
+https://www.robustperception.io/left-joins-in-promql/      
 
 # Functions
 
