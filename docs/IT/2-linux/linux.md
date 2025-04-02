@@ -59,7 +59,12 @@ Cả 3 đều sử dụng phím tắt `h` để cho phép bạn xem các phím t
     ```
     lsof -a +L1
     ```
-`Solution:` https://access.redhat.com/solutions/2316   
+    `Solution:` https://access.redhat.com/solutions/2316     
+
+- Kiểm tra user hiện tại có quyền sudo hay không
+    ```
+    sudo -v
+    ```
 ## Một số ký tự trong linux
 ### Các ký tự nối command         
 `command 1; command 2` - thực hiện tuần tự các command, `command 2` sẽ thực hiện sau `command 1` và không quan tâm tới exitCode của `command 1`.
