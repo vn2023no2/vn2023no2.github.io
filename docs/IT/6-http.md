@@ -5,8 +5,10 @@ sidebar_position: 6
 # HTTP
 HTTP (Hypertext Transfer Protocol) là giao thức truyền tải siêu văn bản. Đây là giao thức tiêu chuẩn cho World Wide Web (www) để truyền tải dữ liệu dưới dạng văn bản, âm thanh, hình ảnh, video từ Web Server tới trình duyệt web của người dùng và ngược lại.
 
-HTTP Message ==> HTTP Request
+```
+HTTP Message ==> HTTP Request           
              ==> HTTP Response
+```
 
 # HTTP Request 
 HTTP Request bao gồm:
