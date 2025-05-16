@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkvn_2023_no_2_github_io=self.webpackChunkvn_2023_no_2_github_io||[]).push([[6334],{1794:a=>{a.exports=JSON.parse('{"label":"facebook","permalink":"/blog/tags/facebook","allTagsPath":"/blog/tags","count":3,"unlisted":false}')}}]);
