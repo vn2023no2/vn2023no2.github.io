@@ -11,10 +11,14 @@ Có hai strategy cơ bản thường được sử dụng - đây là các strat
 
 Các chiến lược sau đây được coi là "Chiến lược triển khai nâng cao" vì lưu lượng truy cập có thể được kiểm soát theo nhiều cách khác nhau:
 
-- Blue/Green - Version mới sẽ tồn tại cùng với version cũ.
+- Blue/Green - Version mới sẽ tồn tại cùng với version cũ. Nhưng end-user không access vào version mới, chỉ QA, tester mới sử dụng version cho mục đích test. Sau khi test không có vấn đề gì thì mới chuyển traffic của end-user qua version mới.     
 - Canary - Deploy version mới cho 1 lượng nhỏ end-user, nếu không có vấn đề thì update toàn bộ.
 - A/B testing - Deploy version mới cho 1 lượng nhỏ end-user dựa vào điều kiện như (HTTP header, cookie, …)
 - ...
+
+`Reference:`   
+https://spacelift.io/blog/kubernetes-deployment-strategies         
+https://blog.cloud-ace.vn/cac-chien-luoc-trien-khai-kubernetes/     
 
 # HPA
 - HPA sclale theo giá trị sử dụng trung bình của pod để duy trì mức sử dụng resource trung bình theo target.    
@@ -48,11 +52,7 @@ Service Discovery là một thuật ngữ chỉ cách các ứng dụng tự đ�
 Service Discovery trong Kubernetes    
 Ta sẽ có hai cách sau để các ứng dụng trong Pod phát hiện được service:   
 - Phát hiện thông qua biến môi trường (ENV)
-- Phát hiện thông qua DNS Lookup.
-
-`Reference:`   
-https://spacelift.io/blog/kubernetes-deployment-strategies         
-https://blog.cloud-ace.vn/cac-chien-luoc-trien-khai-kubernetes/       
+- Phát hiện thông qua DNS Lookup.  
 
 
 # Các metrics của cụm K8S đến từ đâu
