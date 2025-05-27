@@ -34,6 +34,8 @@ The ?targetPlatform=win32-x64 part is optional, if your extension is universal.
 Download in linux
 ```
 curl  https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/python/2024.17.2024100401/vspackage?targetPlatform=linux-x64 -O -J
+
+curl  https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.26.1/vspackage?targetPlatform=linux-x64 -O -J
 ```
 
 `Reference:`   
