@@ -17,5 +17,5 @@ https://viblo.asia/p/how-to-avoid-memory-leaks-in-java-aWj53X1eK6m
 https://www.baeldung.com/java-memory-leaks      
 
 
-
+## Full GC Java
 
