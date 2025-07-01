@@ -23,13 +23,19 @@ https://www.atlassian.com/incident-management/kpis/sla-vs-slo-vs-sli
 
 
 ## Observability vs Monitoring
+```
+Cái gì bị lỗi và tại sao?
+```
+Monitoring trả lời cho `cái gì` và Observability trả lời cho `tại sao`.
+
 Có sự khác biệt giữa Observability và Monitoring. Để hiểu được sự khác biệt giữa hai điều này, hãy bắt đầu bằng việc thực sự hiểu những lỗ hổng trong các hệ thống "traditional monitoring".    
 
 Trong khi traditional monitoring cung cấp đầy đủ thông tin về cơ sở hạ tầng legacy, Observability đưa Monitoring lên `tầm cao mới`, giúp CNTT và DevOps quản lý, cung cấp và tối ưu hóa các hệ thống phức tạp.     
 
-Để rõ ràng hơn, Observability không loại bỏ nhu cầu Monitoring. Monitoring chỉ trở thành một trong những kỹ thuật được sử dụng để đạt được Observability.    
+Để rõ ràng hơn, Observability không loại bỏ nhu cầu Monitoring. `Monitoring chỉ trở thành một trong những kỹ thuật được sử dụng để đạt được Observability.`    
 
 Hãy nghĩ theo cách này: Observability (danh từ) là cách tiếp cận về mức độ bạn có thể hiểu hệ thống phức tạp của mình. Monitoring (động từ) là hành động bạn thực hiện để hỗ trợ cách tiếp cận đó.    
+
 
 |                              | Theo dõi                                                                                             | Khả năng quan sát                                                                                                                                                  |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
