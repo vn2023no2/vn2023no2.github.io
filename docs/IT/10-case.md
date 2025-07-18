@@ -10,3 +10,9 @@ Solution: migrate from gp2 to gp3 storage to improve IOPS.
 
 ## Container chạy ngầm trên các worker node
 Khi pod bị stuck ở `Terminating` state => xoá pod với option `kubectl ... --force` => pod bị xoá ở tầng K8S => nhưng ở tầng container runtime, pod vẫn tồn tại.    
+
+```
+$ kubectl delete abc-pod --force
+warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+```
+
