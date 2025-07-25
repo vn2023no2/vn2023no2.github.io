@@ -72,3 +72,16 @@ Cả 3 đều sử dụng phím tắt `h` để cho phép bạn xem các phím t
 `command 1 && command 2` - thực hiện tuần tự các command, `command 2` sẽ thực hiện khi và chỉ khi `command 1` có exitCode là 0 (thành công).
 
 `command 1 || command 2` - thực hiện tuần tự các command, `command 2` sẽ thực hiện khi và chỉ khi `command 1` có exitCode khác 0.
+
+## Install
+## CentOS or RedHat
+- Install
+```
+sudo rpm -i filename.rpm
+```
+
+- Uninstall
+```
+sudo rpm -aq | grep filename.rpm
+sudo rpm -e filename.rpm
+```
