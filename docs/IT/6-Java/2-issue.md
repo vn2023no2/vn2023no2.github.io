@@ -9,7 +9,7 @@ Một trong những lợi ích cốt lõi của Java là quản lý bộ nhớ t
 
 Theo lý thuyết mà các Java-er thường quảng cáo là "bạn chỉ cần viết code tạo các đối tượng - object và Java sẽ triển khai Garbage Collector của nó để phân bổ và phóng bộ nhớ giúp bạn". Nhưng thực tế thì không hoàn hảo đến vậy.   
 
-Memory leaks chỉ việc ứng dụng Jave trong quá trình chạy không được giải phóng bộ nhớ khi các object không còn được sử dụng nữa, nó làm cho bộ nhớ trống giảm dần.   
+Memory leaks chỉ việc ứng dụng Java trong quá trình chạy không được giải phóng bộ nhớ khi các object không còn được sử dụng nữa, nó làm cho bộ nhớ trống giảm dần.   
 
 
 `Reference:`   
