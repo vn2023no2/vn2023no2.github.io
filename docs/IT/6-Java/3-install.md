@@ -9,7 +9,7 @@ sidebar_position: 3
 - Giải nén file vừa download vào thư mục
 Ex:
 ```
-uzip jdk8 -d /usr/local/java/
+unzip jdk8 -d /usr/local/java/
 ```
 - Tạo symlink để có thể sử dụng các file binary
 Ex:
