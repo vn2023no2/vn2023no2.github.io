@@ -17,3 +17,16 @@ Ví dụ có thể coi việc login hệ thống là một `transaction`. Tuy nh
 - runbook
 - playbook
 - RACI (Responsibility assignment matrix - ma trận phân quyền)
+
+## 
+Observability:
+detection và investigate     
+monitoring - observability    
+xử lý sự cố nhanh nhất    
+xử lý ntn để không lặp lại nữa    
+
+vận hành app + vận hành hạ tầng    
+
+synthetics - giả lập testing     
+
+apply từng phần - synthetics chưa có thì apply trước        
