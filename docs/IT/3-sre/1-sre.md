@@ -3,6 +3,13 @@ sidebar_position: 1
 ---
 
 # SRE
+## Define
+SRE: SRE là kĩ sư phần mềm nhưng làm công việc liên quan đến operation là chính. Công việc này chiếm khoảng 50%, chủ yếu là xử lý issue, on-call. 50% còn lại tập trung phát triển tính năng cho hệ thống như auto-scaling, self-healing...     
+
+
+`References:`
+https://www.giaosucan.com/2020/03/chieu-binh-binh-giang-xoa-data-devops.html   
+
 ## SLA, SLO, SLI
 ![SLA, SLO, SLI](img/slo-vs-sla-vs-sli.jpg)
 
