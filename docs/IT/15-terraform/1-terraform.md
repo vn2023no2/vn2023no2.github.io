@@ -57,6 +57,13 @@ Giải thích:
 - `terraform.tfvars` - đây là file gán giá trị cho các variables.
 - các file *.tf - ....
 
+Thực ra terraform chỉ sử dụng 2 loại file 
+- file `*.tfvars`: khai báo giá trị cho các biến đầu vào.
+- file `*.tf`:
+    - nếu có nhiều file `*.tf` thì terraform tiến hành merge các file đó lại với nhau.
+    - nội dung trong các file `*.tf` không được trùng nhau.
+    - không cần phải đặt tên file là `main.tf` chỉ cần có file `*.tf` và khai báo đúng là okay.
+    - việc đặt tên các file `*.tfvar` và `*.tf` chỉ mang tính chất clear.
 
 ## Tips & Tricks
 - Sử dụng biến `TF_CLI_ARGS_plan` để giới hạn resource được áp dụng 
