@@ -18,3 +18,13 @@ sidebar_position: 36
     ...
   }
 ```
+
+- Ở phần dimensions KHÔNG THỂ dùng `ResourceArn`, phải dùng `DistributionId`
+```
+  dimensions = {
+    ...
+    ResourceArn = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.tcb_stg_aem_cf_to_alb.id}" ## Do not use
+    Region         = "Global"
+    ...
+  }
+```
