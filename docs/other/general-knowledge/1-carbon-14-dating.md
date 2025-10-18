@@ -5,15 +5,22 @@ sidebar_position: 1
 # Phương pháp định tuổi bằng đồng vị carbon
 
 ## Nguyên tử, Nguyên tố, Phân tử, Đồng vị
-**Nguyên tử** là đơn vị cơ bản của vật chất, gồm hạt nhân (proton - mang điện tích dương, neutron - không mang điện) ở trung tâm và đám mây các electron quay xung quanh. Số proton chính là số hiệu nguyên tử.
+**Nguyên tử (Atom)** là đơn vị cơ bản của vật chất, gồm hạt nhân (proton - mang điện tích dương, neutron - không mang điện) ở trung tâm và đám mây các electron quay xung quanh. Số proton chính là số hiệu nguyên tử.
 Số proton trong hạt nhân (hay còn gọi là số hiệu nguyên tử, Z) xác định loại nguyên tử đó là gì.         
 
-**Nguyên tố** hay **nguyên tố hóa học** là một loại chất hóa học được xác định bởi tập hợp các nguyên tử có cùng số proton trong hạt nhân.   
+**Nguyên tố (Element)** hay **nguyên tố hóa học** là một loại chất hóa học được xác định bởi tập hợp các nguyên tử có cùng số proton trong hạt nhân (tức là cùng loại).   
 Ví dụ: Tất cả các nguyên tử oxy đều có 8 proton trong hạt nhân, do đó chúng đều thuộc nguyên tố oxy.        
 
-**Đồng vị** là các biến thể của một nguyên tố hóa học, trong đó hạt nhân nguyên tử có cùng số proton (số đơn vị điện tích hạt nhân) nhưng khác số neutron và do đó có số khối khác nhau.   
+**Đồng vị (Isotope)** là các biến thể của một nguyên tố hóa học (hay là các nguyên tử của cùng một nguyên tố), trong đó hạt nhân nguyên tử có cùng số proton (số đơn vị điện tích hạt nhân) nhưng khác số neutron và do đó có số khối khác nhau.   
 
-**Phân tử** là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau và thể hiện đầy đủ tính chất hóa học của chất.   
+**Note**:
+- Ví dụ: nguyên tố carbon bao gồm nhiều đồng vị, mỗi đồng vị có nguyên tử khác nhau nhưng đều thuộc nguyên tố carbon:
+  - đồng vị 12C (nguyên tử carbon 12 (6p - 6n)). 
+  - đồng vị 13C (nguyên tử carbon 13 (6p - 7n)).
+  - đồng vị 14C (nguyên tử carbon 14 (6p - 8n)).
+  - ...
+- Nguyên tố là khái niệm để chỉ "họ" nguyên tử, còn đồng vị là khái niệm chỉ các "cá thể" trong cùng "họ" nguyên tử.        
+**Phân tử (Molecule)** là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau và thể hiện đầy đủ tính chất hóa học của chất.   
 Ví dụ: phân tử nước (H₂O) - Một phân tử nước bao gồm hai nguyên tử hydro (H) và một nguyên tử oxy (O).      
 
 
