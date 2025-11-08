@@ -88,3 +88,7 @@ spec:
         factor: 2 # a factor to multiply the base duration after each failed retry
         maxDuration: 3m # the maximum amount of time allowed for the backoff strategy
 ```
+
+## 3.3 Workspace
+- Các phần mềm cần cài đặt để có thể làm việc ở máy tính remote
+![sds-required-software](../img/sds-required-software.jpg)        
