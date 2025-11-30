@@ -11,3 +11,14 @@ sidebar_position: 45
 + Tạo một ổ khác để cài các ứng dụng vào cũng như lưu các file của ứng dụng (Download của Chrome, VM của Vargant)
 + Xem xét cài các ứng dụng dạng Portable và lưu sang ổ Secondary OS để tiện lợi và tránh disk pressure lên ổ C
 + Để màn hình Desktop luôn clean && minimal
+
+
+## CMD Commands
+### Network
+```
+# Show saved WiFi
+netsh wlan show profiles
+
+# Show WiFi password
+netsh wlan show profiles name="WiFi_Name" key=clear
+```
