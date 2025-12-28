@@ -38,5 +38,22 @@ curl  https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-py
 curl  https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.26.1/vspackage?targetPlatform=linux-x64 -O -J
 ```
 
+## Cài đặt màn hình VSCode startup luôn là Welcome Page
+### Method 1: Using the Settings UI (Recommended)
+- Open VS Code.   
+- Go to `File` > `Preferences` > `Settings` (or use the shortcut `Ctrl+,`).   
+- In the search bar at the top, type `startup editor`.   
+- Under `Workbench` > `Startup Editor`, select `Welcome Page` from the dropdown menu.    
+- Next, search for `restoreWindows` in the settings search bar.   
+- Under `Window` > `Restore Windows`, select `None` from the dropdown menu.    
+### Method 2: Editing settings.json
+- For users who prefer editing the raw JSON file, you can directly add the following lines to your settings.json file:    
+- Open the Command Palette (Ctrl+Shift+P) and type Open User Settings (JSON).   
+- Add the following lines to the JSON object:   
+```json
+"workbench.startupEditor": "welcomePage",
+"window.restoreWindows": "none"
+```
+
 `Reference:`   
 https://stackoverflow.com/a/79565372/14312225  
