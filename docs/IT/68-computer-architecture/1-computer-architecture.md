@@ -54,8 +54,8 @@ Một ví dụ đơn giản là dùng cổng `XOR` để thực hiện phép tí
   - Xử lý dữ liệu 8 bit (1 byte) mỗi lần
   - Thanh ghi 8-bit
   - Bus dữ liệu 8-bit
-  - Có thể địa chỉ hóa 64KB bộ nhớ (16-bit address bus)
-
+  - Có thể địa chỉ hóa 64KB bộ nhớ (16-bit address bus)     
+==> Hiểu đơn giản CPU 8-bit là con CPU chỉ làm việc được với 8bit dữ liệu là tối đa (đương nhiên 1 bit nó cũng làm), nếu nhiều hơn thì nó lại chia nhỏ ra làm nhiều gói dữ liệu 8bit để xử lí.    
 - Thiết kế để cộng ở CPU 8-bit
 
 - Cộng 2 số ở dạng 8-bit
@@ -76,6 +76,43 @@ Một ví dụ đơn giản là dùng cổng `XOR` để thực hiện phép tí
 | **64-bit** | 64-bit | 1 lệnh | 1 lệnh | 1 lệnh | 1 lệnh |
 
 **Kết luận:** CPU có số bit càng cao -> thanh ghi càng lớn → Thực hiện phép tính hiệu quả hơn → Ít lệnh hơn.
+
+## Máy tính lượng tử - Tương lai của tính toán
+
+### **Máy tính cổ điển vs Máy tính lượng tử:**
+
+#### **Máy tính cổ điển:**
+- **Bit cổ điển**: Chỉ có 2 trạng thái 0 hoặc 1
+- **Transistor**: ON/OFF rõ ràng
+- **Xử lý tuần tự**: Từng bit một
+
+#### **Máy tính lượng tử:**
+- **Qubit (Quantum bit)**: Có thể ở trạng thái **superposition**
+- **Trạng thái**: 0, 1, hoặc **cả 0 và 1 cùng lúc**
+- **Xử lý song song**: Nhiều trạng thái cùng lúc
+
+### **Ví dụ so sánh:**
+```
+Máy tính cổ điển:
+- 3 bit: 000, 001, 010, 011, 100, 101, 110, 111
+- Chỉ xử lý 1 trạng thái/thời điểm
+
+Máy tính lượng tử:
+- 3 qubit: Có thể xử lý tất cả 8 trạng thái cùng lúc
+- Tốc độ tăng theo cấp số nhân
+```
+
+### **Ưu điểm lượng tử:**
+- **Tốc độ**: Xử lý song song nhiều khả năng
+- **Mã hóa**: Phá mã RSA trong thời gian ngắn
+- **Mô phỏng**: Mô phỏng hệ thống phức tạp
+
+### **Thách thức:**
+- **Không ổn định**: Qubit dễ bị nhiễu
+- **Nhiệt độ**: Cần làm lạnh gần 0 tuyệt đối
+- **Chi phí**: Rất đắt và phức tạp
+
+**Kết luận:** Lượng tử mở ra kỷ nguyên mới, nhưng chưa thay thế hoàn toàn máy tính cổ điển.
 
 
 
