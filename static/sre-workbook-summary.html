@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tóm tắt: The Site Reliability Workbook</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #2d3748;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a365d, #2b6cb0);
+      color: white;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+    header p { font-size: 1rem; opacity: 0.85; }
+
+    .badge {
+      display: inline-block;
+      background: #63b3ed;
+      color: #1a365d;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-top: 12px;
+    }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .overview-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .overview-card .icon { font-size: 2rem; margin-bottom: 8px; }
+    .overview-card .label { font-size: 0.85rem; color: #718096; }
+    .overview-card .value { font-size: 1.1rem; font-weight: 700; color: #2b6cb0; }
+
+    .part { margin-bottom: 48px; }
+
+    .part-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .part-1 .part-title { background: #2b6cb0; }
+    .part-2 .part-title { background: #276749; }
+    .part-3 .part-title { background: #744210; }
+
+    .chapter {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border-left: 4px solid;
+    }
+
+    .part-1 .chapter { border-color: #2b6cb0; }
+    .part-2 .chapter { border-color: #276749; }
+    .part-3 .chapter { border-color: #744210; }
+
+    .chapter h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .chapter ul { padding-left: 20px; }
+    .chapter ul li { font-size: 0.9rem; color: #4a5568; margin-bottom: 4px; }
+
+    .highlight {
+      background: #ebf8ff;
+      border: 1px solid #bee3f8;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+
+    .highlight h2 { color: #2b6cb0; margin-bottom: 12px; }
+    .highlight p { font-size: 0.95rem; color: #4a5568; margin-bottom: 8px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+    .tag {
+      background: #ebf8ff;
+      border: 1px solid #90cdf4;
+      color: #2b6cb0;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .compare-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .compare-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+    .compare-card ul { padding-left: 18px; }
+    .compare-card ul li { font-size: 0.9rem; color: #4a5568; margin-bottom: 6px; }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.85rem;
+      color: #718096;
+      background: white;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    footer a { color: #2b6cb0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .compare { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p>📚 Tóm tắt sách</p>
+  <h1>The Site Reliability Workbook</h1>
+  <p>Practical Ways to Implement SRE — Google SRE Team</p>
+  <span class="badge">Xuất bản 2018 · O'Reilly Media</span>
+</header>
+
+<div class="container">
+
+  <!-- Tổng quan -->
+  <div class="overview">
+    <div class="overview-card">
+      <div class="icon">📖</div>
+      <div class="value">3 Phần</div>
+      <div class="label">Foundations · Practices · Processes</div>
+    </div>
+    <div class="overview-card">
+      <div class="icon">📝</div>
+      <div class="value">19 Chương</div>
+      <div class="label">Nội dung chi tiết</div>
+    </div>
+    <div class="overview-card">
+      <div class="icon">🏢</div>
+      <div class="value">Case Studies</div>
+      <div class="label">Evernote, Home Depot...</div>
+    </div>
+    <div class="overview-card">
+      <div class="icon">🌐</div>
+      <div class="value">Miễn phí</div>
+      <div class="label">Đọc online tại sre.google</div>
+    </div>
+  </div>
+
+  <!-- Giới thiệu -->
+  <div class="highlight">
+    <h2>📌 Giới thiệu</h2>
+    <p>
+      <strong>The Site Reliability Workbook</strong> là cuốn sách thực hành đi kèm với cuốn <em>Site Reliability Engineering</em> của Google.
+      Trong khi cuốn SRE gốc giải thích <strong>"What"</strong> và <strong>"Why"</strong>, cuốn Workbook này tập trung vào <strong>"How"</strong> —
+      hướng dẫn cụ thể cách áp dụng SRE vào thực tế tại bất kỳ tổ chức nào, không chỉ Google.
+    </p>
+    <div class="tags">
+      <span class="tag">SRE</span>
+      <span class="tag">DevOps</span>
+      <span class="tag">SLO / SLI / SLA</span>
+      <span class="tag">Incident Response</span>
+      <span class="tag">On-Call</span>
+      <span class="tag">Monitoring</span>
+      <span class="tag">Postmortem</span>
+      <span class="tag">Reliability Engineering</span>
+    </div>
+  </div>
+
+  <!-- Phần 1 -->
+  <div class="part part-1">
+    <div class="part-title">📘 Phần 1: Foundations — Nền tảng</div>
+
+    <div class="chapter">
+      <h3>Chương 1: How SRE Relates to DevOps</h3>
+      <ul>
+        <li>SRE và DevOps không mâu thuẫn, SRE là cách triển khai cụ thể của DevOps</li>
+        <li>DevOps là triết lý, SRE là thực hành với các quy trình rõ ràng</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 2: Implementing SLOs</h3>
+      <ul>
+        <li>SLI: chỉ số đo lường (latency, error rate, availability)</li>
+        <li>SLO: mục tiêu cụ thể cho SLI (VD: 99.9% uptime)</li>
+        <li>Error budget = 100% - SLO, dùng để cân bằng tốc độ và độ ổn định</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 3: SLO Engineering Case Studies</h3>
+      <ul>
+        <li>Case study thực tế từ Evernote và The Home Depot</li>
+        <li>Cách xây dựng SLO từ đầu khi chưa có dữ liệu lịch sử</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 4: Monitoring</h3>
+      <ul>
+        <li>4 Golden Signals: Latency, Traffic, Errors, Saturation</li>
+        <li>Thiết kế dashboard và alerting có ý nghĩa, tránh noise</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 5: Alerting on SLOs</h3>
+      <ul>
+        <li>Alert dựa trên error budget burn rate thay vì ngưỡng cố định</li>
+        <li>Giảm alert fatigue — chỉ báo động khi thực sự cần thiết</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 6: Eliminating Toil</h3>
+      <ul>
+        <li>Toil = công việc thủ công, lặp lại, không tạo ra giá trị lâu dài</li>
+        <li>Mục tiêu: giữ toil dưới 50% thời gian làm việc của SRE</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 7: Simplicity</h3>
+      <ul>
+        <li>Hệ thống đơn giản dễ vận hành và debug hơn</li>
+        <li>Tránh over-engineering, ưu tiên giải pháp đủ dùng</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Phần 2 -->
+  <div class="part part-2">
+    <div class="part-title">📗 Phần 2: Practices — Thực hành</div>
+
+    <div class="chapter">
+      <h3>Chương 8: On-Call</h3>
+      <ul>
+        <li>Tổ chức lịch on-call công bằng, tránh burnout</li>
+        <li>Escalation policy rõ ràng, giới hạn số lượng alert mỗi đêm</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 9: Incident Response</h3>
+      <ul>
+        <li>Quy trình: Detect → Respond → Mitigate → Resolve</li>
+        <li>Phân vai: Incident Commander, Communications Lead, Operations Lead</li>
+        <li>Ưu tiên khôi phục dịch vụ trước, tìm root cause sau</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 10: Postmortem Culture</h3>
+      <ul>
+        <li>Blameless postmortem: không đổ lỗi, chỉ tìm cách cải thiện hệ thống</li>
+        <li>Template chuẩn: timeline, root cause, impact, action items</li>
+        <li>Chia sẻ postmortem rộng rãi để cả tổ chức học hỏi</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 11: Managing Load</h3>
+      <ul>
+        <li>Load balancing, traffic shaping, rate limiting</li>
+        <li>Graceful degradation khi hệ thống quá tải</li>
+        <li>Chiến lược shed load để bảo vệ hệ thống</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 12: Non-Abstract Large System Design</h3>
+      <ul>
+        <li>Thiết kế hệ thống lớn với tư duy reliability từ đầu</li>
+        <li>Ví dụ thực tế: thiết kế hệ thống pub/sub có độ tin cậy cao</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 13: Data Processing Pipelines</h3>
+      <ul>
+        <li>Các pattern xử lý failure trong pipeline: retry, dead letter queue</li>
+        <li>Monitoring pipeline: đo latency, throughput, error rate</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 14 & 15: Configuration Design & Best Practices</h3>
+      <ul>
+        <li>Configuration là code: cần review, test và version control</li>
+        <li>Canary deployment cho config changes, tránh configuration drift</li>
+        <li>Validation config tự động trước khi rollout</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Phần 3 -->
+  <div class="part part-3">
+    <div class="part-title">📙 Phần 3: Processes — Quy trình tổ chức</div>
+
+    <div class="chapter">
+      <h3>Chương 16: SRE & Product Teams</h3>
+      <ul>
+        <li>SRE là partner của dev team, không phải ops team truyền thống</li>
+        <li>Production Readiness Review (PRR): checklist trước khi service lên prod</li>
+        <li>SRE có quyền từ chối nếu service chưa đủ điều kiện</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 17: SRE Engagement Model</h3>
+      <ul>
+        <li>Các mức độ: từ tư vấn → hỗ trợ → full SRE ownership</li>
+        <li>Tiêu chí để "graduate" service — hand back về dev team tự quản lý</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 18: SRE Team Lifecycles</h3>
+      <ul>
+        <li>Cách bootstrap team SRE từ đầu trong tổ chức</li>
+        <li>Scaling team theo sự phát triển, tránh SRE trở thành bottleneck</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <h3>Chương 19: SRE Beyond Your Walls</h3>
+      <ul>
+        <li>Áp dụng SRE cho vendor và external dependencies</li>
+        <li>SLO với bên thứ ba, chia sẻ văn hóa SRE ra ngoài tổ chức</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- So sánh -->
+  <div class="compare">
+    <div class="compare-card">
+      <h3>📕 SRE Book (2016)</h3>
+      <ul>
+        <li>Lý thuyết và triết lý SRE</li>
+        <li>Giải thích "What" và "Why"</li>
+        <li>Góc nhìn nội bộ Google</li>
+        <li>Nền tảng tư tưởng</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <h3>📘 SRE Workbook (2018)</h3>
+      <ul>
+        <li>Hướng dẫn thực hành cụ thể</li>
+        <li>Tập trung vào "How"</li>
+        <li>Áp dụng ngoài Google</li>
+        <li>Case studies thực tế</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Đọc miễn phí tại <a href="https://sre.google/workbook/table-of-contents/" target="_blank">sre.google/workbook</a> · Tóm tắt bởi Amazon Q</p>
+</footer>
+
+</body>
+</html>

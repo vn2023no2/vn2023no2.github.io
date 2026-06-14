@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senior SRE Interview – TNEX Finance</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+    header {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 1.8rem; }
+    header p { margin-top: 0.5rem; opacity: 0.75; font-size: 0.95rem; }
+
+    .container { max-width: 860px; margin: 2rem auto; padding: 0 1rem; }
+
+    .topic { background: white; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: #1a1a2e;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+    .topic-header .icon { font-size: 1.3rem; }
+    .topic-header h2 { font-size: 1rem; flex: 1; }
+    .topic-header .toggle { font-size: 1.1rem; transition: transform 0.3s; }
+    .topic-header.open .toggle { transform: rotate(180deg); }
+
+    .topic-body { display: none; padding: 1rem; }
+    .topic-body.open { display: block; }
+
+    .qa { border-left: 3px solid #e0e0e0; margin-bottom: 1rem; padding-left: 1rem; }
+    .qa:last-child { margin-bottom: 0; }
+
+    .question {
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      color: #16213e;
+      padding: 0.4rem 0;
+    }
+    .question:hover { color: #0f3460; }
+    .question span.arr { font-size: 0.8rem; margin-top: 3px; transition: transform 0.2s; flex-shrink: 0; }
+    .question.open span.arr { transform: rotate(90deg); }
+
+    .answer {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #444;
+      background: #f8f9fb;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+    }
+    .answer.open { display: block; }
+
+    .tag {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1a73e8;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      margin-bottom: 0.75rem;
+    }
+
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #999; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🚀 Senior SRE Interview Guide</h1>
+  <p>TNEX Finance – Phòng Vận hành Công nghệ</p>
+</header>
+
+<div class="container">
+
+  <!-- 1 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">📊</span>
+      <h2>1. Reliability & SLO/SLI/SLA</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn định nghĩa SLI, SLO, SLA như thế nào? Cho ví dụ thực tế?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Concept</span>
+          <p><strong>SLI (Service Level Indicator)</strong> là chỉ số đo lường thực tế, ví dụ: tỷ lệ request thành công trong 5 phút.</p>
+          <p><strong>SLO (Service Level Objective)</strong> là mục tiêu nội bộ, ví dụ: SLI ≥ 99.9% trong 30 ngày.</p>
+          <p><strong>SLA (Service Level Agreement)</strong> là cam kết pháp lý với khách hàng, thường thấp hơn SLO ~10-20% để có buffer.</p>
+          <p style="margin-top:0.5rem"><em>Ví dụ thực tế:</em> Với API thanh toán: SLI = % request &lt; 300ms, SLO = 99.5%, SLA với đối tác = 99%.</p>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Khi error budget cạn kiệt, bạn xử lý như thế nào với product team?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Process</span>
+          <p>Khi error budget hết, tôi đề xuất <strong>feature freeze</strong> tạm thời và ưu tiên hoàn toàn cho reliability work. Cụ thể:</p>
+          <ul style="margin-left:1.2rem;margin-top:0.4rem">
+            <li>Trình bày dashboard error budget cho leadership để alignment.</li>
+            <li>Yêu cầu team product dừng deploy tính năng mới cho đến khi budget phục hồi.</li>
+            <li>Tập trung vào giảm toxi latency, fix lỗi recurring, cải thiện runbook.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn đã từng thiết kế hệ thống high availability chưa? Kiến trúc như thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Architecture</span>
+          <p>Kiến trúc HA điển hình tôi đã triển khai trên AWS:</p>
+          <ul style="margin-left:1.2rem;margin-top:0.4rem">
+            <li>Multi-AZ deployment với ALB phân tải giữa các AZ.</li>
+            <li>EKS cluster với node groups trải rộng ≥ 3 AZ.</li>
+            <li>RDS Multi-AZ với read replica cho read-heavy workload.</li>
+            <li>Sử dụng circuit breaker pattern để tránh cascade failure.</li>
+            <li>Health check + auto-healing qua Kubernetes liveness/readiness probe.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">🚨</span>
+      <h2>2. Incident Response & Post-mortem</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Quy trình xử lý incident lúc 3 giờ sáng khi hệ thống production down?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Process</span>
+          <ol style="margin-left:1.2rem">
+            <li><strong>Acknowledge</strong> alert ngay, thông báo channel incident.</li>
+            <li><strong>Assess severity</strong>: bao nhiêu user bị ảnh hưởng? Revenue impact?</li>
+            <li><strong>Mitigate trước, investigate sau</strong>: rollback nếu deploy gần đây, scale up nếu resource thiếu.</li>
+            <li><strong>Loop in</strong> người cần thiết (on-call manager nếu SEV1).</li>
+            <li><strong>Document live</strong> trên incident channel mọi hành động đã làm.</li>
+            <li>Sau khi ổn định: viết post-mortem trong 48h.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn viết post-mortem như thế nào? Ai chịu trách nhiệm?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Process</span>
+          <p>Post-mortem phải <strong>blameless</strong> — tập trung vào hệ thống, không chỉ trích cá nhân. Cấu trúc gồm:</p>
+          <ul style="margin-left:1.2rem;margin-top:0.4rem">
+            <li>Timeline sự kiện chi tiết.</li>
+            <li>Root cause (5-whys hoặc fishbone diagram).</li>
+            <li>Impact: thời gian, số user, doanh thu ảnh hưởng.</li>
+            <li>Action items có owner và deadline cụ thể.</li>
+          </ul>
+          <p style="margin-top:0.4rem">Người on-call chịu trách nhiệm viết draft, team review và approve.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">☸️</span>
+      <h2>3. Kubernetes & Docker</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn troubleshoot một pod liên tục CrashLoopBackOff như thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Troubleshooting</span>
+          <pre style="background:#1a1a2e;color:#aef;padding:0.75rem;border-radius:6px;font-size:0.82rem;overflow-x:auto">
+kubectl describe pod &lt;pod-name&gt;   # xem Events
+kubectl logs &lt;pod-name&gt; --previous # xem log lần crash trước
+kubectl exec -it &lt;pod-name&gt; -- sh  # nếu pod còn sống</pre>
+          <p style="margin-top:0.5rem">Nguyên nhân thường gặp: OOMKilled, liveness probe fail, missing config/secret, image lỗi, port conflict.</p>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Chiến lược deploy zero-downtime của bạn là gì?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Deployment</span>
+          <ul style="margin-left:1.2rem">
+            <li><strong>Rolling update</strong>: mặc định K8s, thay thế pod dần dần.</li>
+            <li><strong>Blue-Green</strong>: chạy song song 2 env, switch traffic khi ready — rollback nhanh nhất.</li>
+            <li><strong>Canary</strong>: route 5-10% traffic vào version mới, monitor rồi tăng dần — an toàn nhất cho fintech.</li>
+          </ul>
+          <p style="margin-top:0.4rem">Tôi ưu tiên canary deploy cho các service thanh toán vì rủi ro cao.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">☁️</span>
+      <h2>4. Cloud – AWS</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn thiết kế multi-AZ architecture cho fintech app như thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Architecture</span>
+          <ul style="margin-left:1.2rem">
+            <li>VPC với public/private subnet trải 3 AZ.</li>
+            <li>ALB → EKS (node group mỗi AZ) → RDS Multi-AZ.</li>
+            <li>ElastiCache (Redis cluster mode) cho session, rate limiting.</li>
+            <li>S3 + CloudFront cho static assets.</li>
+            <li>Route 53 health check + failover routing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn tối ưu chi phí cloud như thế nào trong môi trường production?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Cost Optimization</span>
+          <ul style="margin-left:1.2rem">
+            <li>Dùng <strong>Spot Instances</strong> cho workload không critical (batch, non-prod).</li>
+            <li>Right-size EC2/RDS dựa trên CloudWatch metrics thực tế.</li>
+            <li>Reserved Instances / Savings Plans cho baseline workload.</li>
+            <li>Xóa unused EBS, snapshot, ELB, Elastic IP.</li>
+            <li>Dùng AWS Cost Explorer + budget alert để detect anomaly.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">📈</span>
+      <h2>5. Monitoring & Observability</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Sự khác biệt giữa monitoring và observability?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Concept</span>
+          <p><strong>Monitoring</strong> trả lời: "Hệ thống có đang hoạt động không?" — dựa trên metrics và alert đã được định nghĩa trước.</p>
+          <p style="margin-top:0.4rem"><strong>Observability</strong> trả lời: "Tại sao hệ thống lại hoạt động như vậy?" — bao gồm logs, metrics, traces để debug unknown unknowns.</p>
+          <p style="margin-top:0.4rem">3 pillars: <strong>Metrics</strong> (Prometheus), <strong>Logs</strong> (ELK), <strong>Traces</strong> (Jaeger/OpenTelemetry).</p>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn thiết lập alerting như thế nào để tránh alert fatigue?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Best Practice</span>
+          <ul style="margin-left:1.2rem">
+            <li>Chỉ alert khi <strong>user bị ảnh hưởng thực sự</strong> (symptom-based), không alert từng nguyên nhân nhỏ.</li>
+            <li>Phân loại severity rõ ràng: P1 (wake up), P2 (business hours), P3 (ticket).</li>
+            <li>Dùng <strong>AlertManager inhibition + silencing</strong> để tránh alert cascade.</li>
+            <li>Review và tắt alert không actionable hàng tháng.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">🏗️</span>
+      <h2>6. Infrastructure as Code</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn quản lý Terraform state trong team nhiều người như thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Terraform</span>
+          <ul style="margin-left:1.2rem">
+            <li>Remote state trên <strong>S3 + DynamoDB locking</strong> để tránh concurrent apply.</li>
+            <li>Chia state theo môi trường (dev/staging/prod) và theo service.</li>
+            <li>Dùng <strong>Terraform Cloud</strong> hoặc Atlantis để review plan trước khi apply qua PR.</li>
+            <li>Không commit state file lên git.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Khi có drift giữa infra thực tế và Terraform state, bạn xử lý ra sao?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Terraform</span>
+          <pre style="background:#1a1a2e;color:#aef;padding:0.75rem;border-radius:6px;font-size:0.82rem;overflow-x:auto">
+terraform plan          # detect drift
+terraform refresh       # sync state với thực tế
+terraform import        # import resource vào state nếu thiếu</pre>
+          <p style="margin-top:0.5rem">Nếu drift do thay đổi manual: document lại, cập nhật code, apply lại để về trạng thái desired state.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">🔒</span>
+      <h2>7. Security & Compliance (Fintech)</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn đảm bảo secrets management trong K8s như thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Security</span>
+          <ul style="margin-left:1.2rem">
+            <li>Không lưu secret dạng plaintext trong code hay ConfigMap.</li>
+            <li>Dùng <strong>AWS Secrets Manager</strong> + External Secrets Operator để inject vào pod.</li>
+            <li>Hoặc <strong>HashiCorp Vault</strong> với Vault Agent Sidecar.</li>
+            <li>Enable encryption at rest cho etcd (K8s secret encryption).</li>
+            <li>Rotate secret định kỳ, audit access log.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Kinh nghiệm với network policy và RBAC trong Kubernetes?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Security</span>
+          <ul style="margin-left:1.2rem">
+            <li><strong>Network Policy</strong>: áp dụng default-deny, chỉ allow traffic cần thiết giữa namespace/service.</li>
+            <li><strong>RBAC</strong>: principle of least privilege — mỗi service account chỉ có quyền tối thiểu cần thiết.</li>
+            <li>Audit RBAC định kỳ, dùng <code>kubectl auth can-i</code> để verify.</li>
+            <li>Dùng OPA/Gatekeeper để enforce policy tự động.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="topic">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="icon">💬</span>
+      <h2>8. Câu hỏi hành vi (Behavioral)</h2>
+      <span class="toggle">▼</span>
+    </div>
+    <div class="topic-body">
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Khi deadline gấp nhưng hệ thống chưa đủ ổn định để release, bạn làm gì?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Behavioral</span>
+          <p>Tôi sẽ <strong>định lượng rủi ro cụ thể</strong> rồi trình bày cho stakeholder, không chỉ nói "chưa sẵn sàng". Ví dụ: "Deploy lúc này có 30% khả năng gây downtime 15 phút, ảnh hưởng X user." Sau đó đề xuất các option:</p>
+          <ul style="margin-left:1.2rem;margin-top:0.4rem">
+            <li>Delay thêm N ngày để fix issue cụ thể.</li>
+            <li>Release với feature flag, chỉ enable cho % nhỏ user trước.</li>
+            <li>Deploy với rollback plan rõ ràng và người trực sẵn sàng.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn bất đồng với quyết định kỹ thuật của team, bạn xử lý thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Behavioral</span>
+          <p>Tôi theo nguyên tắc <strong>"Disagree and commit"</strong>. Trước tiên nêu quan điểm với data/reasoning rõ ràng. Nếu team vẫn đi theo hướng khác sau khi đã nghe, tôi commit và hỗ trợ hết mình. Đồng thời ghi lại concerns để review lại sau nếu issue xảy ra.</p>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="question" onclick="toggleAnswer(this)">
+          Bạn onboard và mentor junior SRE như thế nào?
+          <span class="arr">▶</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Leadership</span>
+          <ul style="margin-left:1.2rem">
+            <li>Tuần 1: shadow on-call, đọc runbook, hiểu hệ thống tổng thể.</li>
+            <li>Tuần 2-4: tự handle P3 incident với support.</li>
+            <li>Tháng 2: own một small reliability project.</li>
+            <li>1-on-1 hàng tuần để unblock và feedback.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>Senior SRE Interview Guide · TNEX Finance · Generated by Amazon Q</footer>
+
+<script>
+  function toggleTopic(header) {
+    header.classList.toggle('open');
+    header.nextElementSibling.classList.toggle('open');
+  }
+  function toggleAnswer(question) {
+    question.classList.toggle('open');
+    question.nextElementSibling.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
