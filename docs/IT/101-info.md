@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 101
 ---
 
 # Info
@@ -15,5 +15,12 @@ Seasoned Software/DevOps/SRE Engineer with 8 years of experience across startup,
 - Có leadership/mentoring
 - Bỏ các câu lặp ý, súc tích hơn
 - Không quá 5 dòng — phù hợp với phần summary của CV
+
+Một số key metric
+- Xây dựng, quản lý các cụm k8s với hàng trăm worker node
+- Deploy các service với zero-downtime
+- Xây dựng và triển khai các hệ thống Observability đảm bảo tính high-available, performance
+- Xây dựng và tối ưu hệ thống ELK
+- Xây dựng và tối ưu hệ thống Prometheus + Grafana
 
 
