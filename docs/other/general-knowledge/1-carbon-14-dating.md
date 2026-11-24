@@ -20,9 +20,23 @@ Ví dụ: Tất cả các nguyên tử oxy đều có 8 proton trong hạt nhân
   - đồng vị 14C (nguyên tử carbon 14 (6p - 8n)).
   - ...
 - Nguyên tố là khái niệm để chỉ "họ" nguyên tử, còn đồng vị là khái niệm chỉ các "cá thể" trong cùng "họ" nguyên tử.        
+
 **Phân tử (Molecule)** là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau và thể hiện đầy đủ tính chất hóa học của chất.   
 Ví dụ: phân tử nước (H₂O) - Một phân tử nước bao gồm hai nguyên tử hydro (H) và một nguyên tử oxy (O).      
 
+
+**Chất (substance)**: Chất hay Chất hóa học (chemical substance) (hay hóa chất) là dạng vật chất có thành phần xác định và tính chất đặc trưng không đổi. Bạn không thể tách nó thành các thành phần nhỏ hơn bằng phương pháp vật lý thông thường nếu không phá vỡ liên kết hóa học.
+
+- Phân loại chất hóa học: 
+  - Đơn chất: Chỉ tạo nên từ một nguyên tố hóa học. Ví dụ: khí oxygen (O2), Sắt (Fe), Vàng (Au).
+  - Hợp chất: Tạo nên từ hai hay nhiều nguyên tố hóa học liên kết với nhau. Ví dụ: nước (H2O), muối ăn (NaCl), khí carbon dioxide (CO2).
+
+- Trạng thái và tính chất
+  - Trạng thái tồn tại: Rắn, lỏng, khí và plasma (tùy thuộc vào nhiệt độ và áp suất).
+  - Tính chất vật lý: Màu sắc, mùi, vị, khối lượng riêng, nhiệt độ nóng chảy, nhiệt độ sôi, tính dẫn điện hay độ tan.
+  - Tính chất hóa học: Khả năng biến đổi thành chất khác qua phản ứng hóa học, như khả năng cháy, bị phân hủy hoặc tác dụng với chất khác.
+
+Giống như 1 viên gạch là nguyên tử Fe, còn cả bức tường xây từ hàng vạn viên gạch đó chính là chất Fe.   
 
 ## Định tuổi bằng đồng vị carbon
 Khi còn sống, động thực vật tồn tại trong trạng thái cân bằng với môi trường xung quanh thông qua quá trình trao đổi carbon với khí quyển hoặc thông qua chế độ hấp thụ dinh dưỡng của chúng. Do vậy, lượng 14C trong chúng có tương quan với lượng 14C khí quyển, hoặc đối với trường hợp của động thực vật thủy sinh thì là tương quan với lượng 14C đại dương. Một khi chết đi, động thực vật ngừng hấp thụ 14C, nhưng lượng 14C bên trong vẫn bị phân rã dần, dẫn đến sự sụt giảm tỉ lệ 14C/12C ở các di vật bắt nguồn từ chúng. Bởi lẽ 14C phân rã theo mức nhất định, người ta có thể vận dụng tỉ lệ carbon phóng xạ để xác định niên đại của một vật thể vào thời điểm mà nó ngừng trao đổi carbon với môi trường ngoài – mẫu càng cổ thì lượng 14C sót lại càng ít.    
